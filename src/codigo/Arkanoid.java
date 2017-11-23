@@ -14,14 +14,14 @@ import acm.graphics.*;
 
 public class Arkanoid extends acm.program.GraphicsProgram{
 	Pelota pelota1 = new Pelota(7, Color.BLUE);
-	//Pelota pelota2 = new Pelota(30, Color.BLUE);
+	
 	Barra barra1 = new Barra(600, 15, Color.RED);
 	int anchoLadrillo = 35;
 	int altoLadrillo = 15;
 	int espacioMenu = 200;
 	
 	int puntuacion = 0;
-	//GLabel marcador = new GLabel("0");
+	
 	Marcador marcador = new Marcador(20, 40);
 			
 	public void init(){
@@ -32,10 +32,9 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		add(lateral, getWidth() - espacioMenu - lateral.getWidth() - pelota1.getWidth(), 0);
 		
 		 add (pelota1, 0, getHeight()*0.60 - pelota1.getHeight());
-		//add (pelota2, 0, getHeight()*0.70 - pelota2.getHeight());
+	
 		add (barra1, 0, getHeight()*0.80);	
-		//cajaMarcador.setFilled(true);
-		//cajaMarcador.setFillColor(Color.WHITE);
+	
 		
 		
 	}
@@ -46,14 +45,14 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		add(marcador.texto, 0, 20);
 		while (true){
 			pelota1.muevete(this);
-			//pelota2.muevete(this);
+		
 			pause(2);
 		}
 	}
 	
 	public void mouseMoved(MouseEvent evento){
 		barra1.mueveBarra(evento.getX(), getWidth());
-		//evento.getX()
+		
 	}
 	
 	private void dibujaNivel01(){
