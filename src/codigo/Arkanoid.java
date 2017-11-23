@@ -45,7 +45,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		add(marcador.texto, 0, 20);
 		while (true){
 			pelota1.muevete(this);
-		
+		//LOLO RANDOM
 			pause(2);
 		}
 	}
