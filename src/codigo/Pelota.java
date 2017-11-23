@@ -48,7 +48,7 @@ public class Pelota extends GOval{
 	 */
 	public void muevete(Arkanoid _arkanoid){
 		//chequea si a chocado con las paredes de la derecha
-		if (this.getX() + this.getWidth() >= _arkanoid.getWidth() || this.getX() < 0){
+		if (this.getX() + this.getWidth() >= _arkanoid.getWidth() - _arkanoid.espacioMenu || this.getX() < 0){
 			xVelocidad *=-1;
 		}
 		//chequea si ha chocado con el techo
@@ -84,6 +84,7 @@ public class Pelota extends GOval{
 				xVelocidad *=-1;
 			}
 			_arkanoid.remove(auxiliar);
+			_arkanoid.marcador.actualizaMarcador(1);
 			noHaChocado = false;
 			}
 		else if (auxiliar instanceof Barra){

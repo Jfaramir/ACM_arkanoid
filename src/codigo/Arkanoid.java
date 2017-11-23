@@ -20,7 +20,8 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	int altoLadrillo = 15;
 	int espacioMenu = 200;
 	
-	int puntuacion = 0;
+	
+	//esto es el marcador
 	
 	Marcador marcador = new Marcador(20, 40);
 			
