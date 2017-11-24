@@ -22,8 +22,8 @@ public class Marcador extends GRect{
 	}
 	
 	public void dibuja(Arkanoid _arkanoid){
-		_arkanoid.add(this, _arkanoid.getWidth() - 50,getY());
-		_arkanoid.add(texto, _arkanoid.getWidth() - 50,getY());
+		_arkanoid.add(this, _arkanoid.getWidth() - 80,getY());
+		_arkanoid.add(texto, _arkanoid.getWidth() - 60,getY());
 		
 		
 	}

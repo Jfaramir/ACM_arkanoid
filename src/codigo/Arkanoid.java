@@ -15,7 +15,7 @@ import acm.graphics.*;
 public class Arkanoid extends acm.program.GraphicsProgram{
 	Pelota pelota1 = new Pelota(7, Color.BLUE);
 	
-	Barra barra1 = new Barra(600, 15, Color.RED);
+	Barra barra1 = new Barra(150, 15, Color.RED);
 	int anchoLadrillo = 35;
 	int altoLadrillo = 15;
 	int espacioMenu = 200;
@@ -23,7 +23,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	
 	//esto es el marcador
 	
-	Marcador marcador = new Marcador(20, 40);
+	Marcador marcador = new Marcador(60, 40);
 			
 	public void init(){
 		addMouseListeners();
@@ -43,12 +43,16 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	public void run(){
 		dibujaNivel01();
 		marcador.dibuja(this);
-		add(marcador.texto, 0, 20);
+		add(marcador.texto, 520, 20);
 		while (true){
 			pelota1.muevete(this);
 		//LOLO RANDOM
 			pause(2);
+			if (pelota1.getY() >  getHeight()){
+				add(gameOver(),getWidth()/2 - 200,getHeight()/2);
+			}
 		}
+		
 	}
 	
 	public void mouseMoved(MouseEvent evento){
@@ -56,7 +60,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		
 	}
 	
-	private void dibujaNivel01(){
+	private void dibujaNivel02(){
 		for (int j=0; j<11; j++){
 			for(int i=j; i<11; i++){
 				Ladrillo miLadrillo = new Ladrillo(anchoLadrillo*i - anchoLadrillo*j/2, altoLadrillo*j + altoLadrillo, anchoLadrillo, altoLadrillo, Color.GRAY);
@@ -64,6 +68,21 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 				pause(7);
 			}
 		}
+	}
+	private void dibujaNivel01(){
+		for (int j=0; j<11; j++){
+			for(int i=0; i<11; i++){
+				Ladrillo miLadrillo = new Ladrillo(anchoLadrillo*i , altoLadrillo*j , anchoLadrillo, altoLadrillo, Color.GRAY);
+				add(miLadrillo);
+				pause(7);
+			}
+		}
+	}
+	private GLabel  gameOver(){
+		GLabel _gameOver = new GLabel ("SOLO " + marcador.texto.getLabel() + "??");
+		_gameOver.setColor(Color.BLACK);
+		_gameOver.setFont(new Font("verdana",Font.BOLD,50));
+		return _gameOver;
 	}
 	
 }
