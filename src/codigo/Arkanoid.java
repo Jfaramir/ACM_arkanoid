@@ -19,11 +19,12 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	int anchoLadrillo = 35;
 	int altoLadrillo = 15;
 	int espacioMenu = 200;
-	
+	int ladrillosNivel1 = 121;
 	
 	//esto es el marcador
 	
 	Marcador marcador = new Marcador(60, 40);
+	Vidas vidas = new Vidas (60,40);
 			
 	public void init(){
 		addMouseListeners();
@@ -44,17 +45,26 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		dibujaNivel01();
 		marcador.dibuja(this);
 		add(marcador.texto, 520, 20);
+		vidas.dibuja(this);
+	
+		
 		while (true){
 			pelota1.muevete(this);
 		//LOLO RANDOM
 			pause(2);
 			if (pelota1.getY() >  getHeight()){
+				for (int i=0; i<3; i++){
+					setLocation(getHeight()* 0.60 - pelota1.getHeight());
+				}
 				add(gameOver(),getWidth()/2 - 200,getHeight()/2);
+			
 			}
 		}
 		
 	}
 	
+	
+
 	public void mouseMoved(MouseEvent evento){
 		barra1.mueveBarra(evento.getX(), getWidth());
 		
@@ -79,6 +89,8 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		}
 	}
 	private GLabel  gameOver(){
+		this.vidas.actualizaVidas(1);
+		
 		GLabel _gameOver = new GLabel ("SOLO " + marcador.texto.getLabel() + "??");
 		_gameOver.setColor(Color.BLACK);
 		_gameOver.setFont(new Font("verdana",Font.BOLD,50));

@@ -67,6 +67,7 @@ public class Pelota extends GOval {
 		if(chequeaColision(getX(), getY(), arkanoid)){//chequeo la esquina superior izq
 			if(chequeaColision(getX()+getWidth(), getY(), arkanoid)){//chequeo la esquina superio der
 				if(chequeaColision(getX(), getY()+getHeight(), arkanoid)){//chequeo la esquina inf izq
+					
 					if(chequeaColision(getX()+getWidth(), getY()+getHeight(), arkanoid)){//chequeo la esquina inf der
 
 					}
@@ -114,7 +115,7 @@ public class Pelota extends GOval {
 			double centroBola = getX() + getWidth()/3;
 			if (centroBola > auxiliar.getX() + auxiliar.getWidth()/3 && 
 				centroBola < auxiliar.getX() + 2 * auxiliar.getWidth()/3){
-				yVelocidad = -1;
+				yVelocidad = -0.75;
 			}
 			else {
 				yVelocidad = -0.5;
