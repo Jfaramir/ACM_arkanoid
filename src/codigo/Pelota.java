@@ -55,8 +55,17 @@ public class Pelota extends GOval {
 			yVelocidad *=-1;
 
 		}
+		//para q vuelva a salir la eplota una vez pierdes la primera bola
+		if (this.getY() > arkanoid.getHeight()){
+			if(arkanoid.vidas.puntosVida > 0){
+				arkanoid.vidas.actualizaVidas(1);
+				this.setLocation(0, arkanoid.getHeight()* 0.60 - this.getHeight());
+				yVelocidad =-1;
+				
+			}
+		}
 
-
+		
 		//chequea si se ha chocado con la pared izquierda o derecha
 		if(this.getX()+this.getWidth()>= arkanoid.getWidth()- arkanoid.espacioMenu
 				||this.getX()<0){
@@ -96,11 +105,11 @@ public class Pelota extends GOval {
 
 		if(auxiliar instanceof Ladrillo){
 			if(auxiliar.getY()==posY||auxiliar.getY()+ auxiliar.getHeight()==posY){
-				yVelocidad*=-1;
+				yVelocidad*=-0.75;
 
 			}
 			else if(auxiliar.getX()== posX || auxiliar.getX() + auxiliar.getWidth()==posX){
-				xVelocidad *=-1;
+				xVelocidad *=-0.75;
 			}
 			arkanoid.remove(auxiliar);
 			arkanoid.marcador.actualizaMarcador(1);
@@ -125,10 +134,6 @@ public class Pelota extends GOval {
 		return noHaChocado;
 
 	}
-
-
-
-
 
 
 

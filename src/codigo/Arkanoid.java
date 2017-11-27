@@ -15,7 +15,7 @@ import acm.graphics.*;
 public class Arkanoid extends acm.program.GraphicsProgram{
 	Pelota pelota1 = new Pelota(7, Color.BLUE);
 	
-	Barra barra1 = new Barra(150, 15, Color.RED);
+	Barra barra1 = new Barra(70, 15, Color.RED);
 	int anchoLadrillo = 35;
 	int altoLadrillo = 15;
 	int espacioMenu = 200;
@@ -52,10 +52,8 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 			pelota1.muevete(this);
 		//LOLO RANDOM
 			pause(2);
-			if (pelota1.getY() >  getHeight()){
-				for (int i=0; i<3; i++){
-					setLocation(getHeight()* 0.60 - pelota1.getHeight());
-				}
+			if (pelota1.getY() >  getHeight() && vidas.puntosVida == 0){
+				
 				add(gameOver(),getWidth()/2 - 200,getHeight()/2);
 			
 			}
@@ -88,13 +86,17 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 			}
 		}
 	}
-	private GLabel  gameOver(){
-		this.vidas.actualizaVidas(1);
+	
+private GLabel  gameOver(){
 		
-		GLabel _gameOver = new GLabel ("SOLO " + marcador.texto.getLabel() + "??");
+		
+		GLabel _gameOver = new GLabel ("HAS PERDIDO");
 		_gameOver.setColor(Color.BLACK);
 		_gameOver.setFont(new Font("verdana",Font.BOLD,50));
 		return _gameOver;
 	}
+
+
+
 	
 }
