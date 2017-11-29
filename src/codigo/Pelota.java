@@ -38,7 +38,7 @@ public class Pelota extends GOval {
 
 		super(ancho, ancho);
 		if(ancho<=0){
-			this.setSize(1, 1);
+			this.setSize(3, 3);
 		}
 		this.setFillColor(Color.BLACK);
 		this.setFilled(true);
@@ -60,11 +60,11 @@ public class Pelota extends GOval {
 			if(arkanoid.vidas.puntosVida > 0){
 				arkanoid.vidas.actualizaVidas(1);
 				this.setLocation(0, arkanoid.getHeight()* 0.60 - this.getHeight());
-				yVelocidad =-1;
+				yVelocidad =-0.75;
 				
 			}
 		}
-
+		
 		
 		//chequea si se ha chocado con la pared izquierda o derecha
 		if(this.getX()+this.getWidth()>= arkanoid.getWidth()- arkanoid.espacioMenu
@@ -104,12 +104,12 @@ public class Pelota extends GOval {
 
 
 		if(auxiliar instanceof Ladrillo){
-			if(auxiliar.getY()==posY||auxiliar.getY()+ auxiliar.getHeight()==posY){
-				yVelocidad*=-0.75;
+			if(auxiliar.getY()== posY || auxiliar.getY() + auxiliar.getHeight() == posY){
+				yVelocidad*=-1;
 
 			}
-			else if(auxiliar.getX()== posX || auxiliar.getX() + auxiliar.getWidth()==posX){
-				xVelocidad *=-0.75;
+			else if(auxiliar.getX()== posX || auxiliar.getX() + auxiliar.getWidth() == posX){
+				xVelocidad *=-1;
 			}
 			arkanoid.remove(auxiliar);
 			arkanoid.marcador.actualizaMarcador(1);
@@ -121,7 +121,7 @@ public class Pelota extends GOval {
 			//para que no sea siempre igual
 			
 			//calculo la posición x del punto central de la bola
-			double centroBola = getX() + getWidth()/3;
+			double centroBola = getX() + getWidth()/2;
 			if (centroBola > auxiliar.getX() + auxiliar.getWidth()/3 && 
 				centroBola < auxiliar.getX() + 2 * auxiliar.getWidth()/3){
 				yVelocidad = -0.75;
