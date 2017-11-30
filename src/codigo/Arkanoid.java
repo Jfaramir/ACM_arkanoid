@@ -15,8 +15,9 @@ import acm.graphics.*;
 public class Arkanoid extends acm.program.GraphicsProgram{
 	//declaramos la pelota 
 	Pelota pelota1 = new Pelota(7, Color.BLUE);
+	
 // declaramos la barra
-	Barra barra1 = new Barra(70, 15, Color.RED);
+	Barra barra1 = new Barra(700, 15, Color.RED);
 	//estas son las medidas del ladrillo
 	int anchoLadrillo = 40;
 	int altoLadrillo = 20;
@@ -26,8 +27,9 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	int ladrillosNivel1 = 55;
 	//marcamos el texto de victoria
 	GLabel _gg = new GLabel ("HAS GANADO");
-	//esto es el marcador
+	//marcamos el texto de derrota
 	GLabel gameOver = new GLabel ("HAS PERDIDO");
+	//esto es el marcador
 	Marcador marcador = new Marcador(60, 40);
 	//Esto hace que salga el numero de vidas
 	Vidas vidas = new Vidas (60,40);
@@ -58,13 +60,14 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		add(marcador.texto, 520, 20);
 		vidas.dibuja(this);
 		//con esto dibujamos el nivel 2
-
+		
 
 
 		while (true){
 			//pa que se mueva
 			pelota1.muevete(this);
-			pause(2);
+			pause(0);
+			
 			//con esto pasamos al segundo nivel
 			if (marcador.puntuacion == ladrillosNivel1){
 				//dibujamos el nivel 2
