@@ -1,5 +1,9 @@
 package codigo;
 
+/*
+ * Autor: Juan Pablo Carpio 
+ * esta pagina es para un marcador
+ */
 import java.awt.Color;
 import java.awt.Font;
 

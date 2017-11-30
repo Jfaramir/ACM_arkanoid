@@ -1,5 +1,8 @@
 package codigo;
-
+/*
+ * Autor: Juan Pablo Carpio 
+ * esta pagina es para las vidas
+ */
 import java.awt.Color;
 import java.awt.Font;
 
