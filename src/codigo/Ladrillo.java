@@ -7,7 +7,7 @@ import acm.graphics.GRect;
 
 /**
  * 
- * @author JP
+ * @author Juan Pablo Carpio
  *
  *La clase sirve para dibujar los ladrillos
  *del juego
@@ -28,5 +28,5 @@ public class Ladrillo extends GRect{
 		setFilled(true);
 		setFillColor(_color);
 	}
-	
+
 }

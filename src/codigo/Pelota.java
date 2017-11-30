@@ -46,12 +46,13 @@ public class Pelota extends GOval{
 		if (this.getY()<0){
 			yVelocidad *= -1; 
 		}
+		//chequea si la pelota ha caido y la devuelve a su posicion
 		if (this.getY() > _arkanoid.getHeight()){
 			if(_arkanoid.vidas.puntosVida > 0){
 				_arkanoid.vidas.actualizaVidas(1);
 				this.setLocation(0, _arkanoid.getHeight()* 0.60 - this.getHeight());
 				yVelocidad =-0.75;
-				
+
 			}
 		}
 
@@ -80,15 +81,15 @@ public class Pelota extends GOval{
 		auxiliar = _arkanoid.getElementAt(posX, posY);
 
 
-if (auxiliar instanceof Ladrillo){
-	if (auxiliar.getY() >= posY || auxiliar.getY() + auxiliar.getHeight() <= posY){
-			yVelocidad *= -1;
-		}
-		else if(auxiliar.getX() == posX || auxiliar.getX() + auxiliar.getWidth() == posX){
-			xVelocidad *= -1;
-		}
+		if (auxiliar instanceof Ladrillo){
+			if (auxiliar.getY() >= posY || auxiliar.getY() + auxiliar.getHeight() <= posY){
+				yVelocidad *= -1;
+			}
+			else if(auxiliar.getX() == posX || auxiliar.getX() + auxiliar.getWidth() == posX){
+				xVelocidad *= -1;
+			}
 
-		
+
 			_arkanoid.remove(auxiliar);
 			_arkanoid.marcador.actualizaMarcador(1);
 			noHaChocado = false;
@@ -96,11 +97,11 @@ if (auxiliar instanceof Ladrillo){
 		else if (auxiliar instanceof Barra){
 			//vamos a modificar el rebote de la bola con el cursor
 			//para que no sea siempre igual
-			
+
 			//calculo la posición x del punto central de la bola
 			double centroBola = getX() + getWidth()/2;
 			if (centroBola < auxiliar.getX() + auxiliar.getWidth()/3 && 
-				centroBola > auxiliar.getX() + 2 * auxiliar.getWidth()/3){
+					centroBola > auxiliar.getX() + 2 * auxiliar.getWidth()/3){
 				yVelocidad = -1;
 			}
 			else {

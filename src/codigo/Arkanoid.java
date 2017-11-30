@@ -15,9 +15,9 @@ import acm.graphics.*;
 public class Arkanoid extends acm.program.GraphicsProgram{
 	//declaramos la pelota 
 	Pelota pelota1 = new Pelota(7, Color.BLUE);
-	
-// declaramos la barra
-	Barra barra1 = new Barra(700, 15, Color.RED);
+
+	// declaramos la barra
+	Barra barra1 = new Barra(70, 15, Color.RED);
 	//estas son las medidas del ladrillo
 	int anchoLadrillo = 40;
 	int altoLadrillo = 20;
@@ -60,43 +60,58 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		add(marcador.texto, 520, 20);
 		vidas.dibuja(this);
 		//con esto dibujamos el nivel 2
-		
+
 
 
 		while (true){
 			//pa que se mueva
 			pelota1.muevete(this);
-			pause(0);
-			
+			pause(2);
+
 			//con esto pasamos al segundo nivel
 			if (marcador.puntuacion == ladrillosNivel1){
 				//dibujamos el nivel 2
 				dibujaNivel02();
 				//colocamos la pelota y hacemos q se mueva
 				pelota1.setLocation(0, getHeight()* 0.60 - pelota1.getHeight());
-				
+
 				while(true){
 
 					//asi hacemos que se mueva la pelota en el nivel 2
 					pelota1.muevete(this);
 					pause(2);
-					//añadimos victoria
-					if ( marcador.puntuacion == 100){
-						add (_gg,getWidth()/2 -200,getHeight()/2);
-						_gg.setColor(Color.BLACK);
-						_gg.setFont(new Font ("verdana",Font.BOLD, 50));
-						pelota1.setLocation(0, getHeight()*0.60- pelota1.getHeight());
+					//añadimos un bonus de un nivel mas si llegas con mas de 2 vidas
+					if (vidas.puntosVida >= 2 && marcador.puntuacion == 110){
+						//dibujo el nivel 3
+						dibujaNivel03();
+						//coloco la pelota y hago q se mueva
+						pelota1.setLocation(0, getHeight()* 0.60 - pelota1.getHeight());
+						pelota1.muevete(this);
+						pelota1.yVelocidad =-1; 
+						while (true){
+							pelota1.muevete(this);
+							pause(2);
+							//añadimos victoria
+							if ( marcador.puntuacion == 220){
+								add (_gg,getWidth()/2 -200,getHeight()/2);
+								_gg.setColor(Color.BLACK);
+								_gg.setFont(new Font ("verdana",Font.BOLD, 50));
+								pelota1.setLocation(0, getHeight()*0.60- pelota1.getHeight());
+							}
+						}
 					}
+
 				}	   
 
 			}
 
-			//devolvemos la pelota 
+			//devolvemos la pelota cuando la pierdes
 			if (pelota1.getY() >  getHeight() && vidas.puntosVida < 0){
-				
-				
+
+
 				pelota1.setLocation(0, getHeight()* 0.60 - pelota1.getHeight());
 				pelota1.muevete(this);
+				pause(2);
 
 			}
 			//añadimos gameover
@@ -111,12 +126,12 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	}
 
 
-
+	//para que la barra siga al raton
 	public void mouseMoved(MouseEvent evento){
 		barra1.mueveBarra(evento.getX(), getWidth());
 
 	}
-
+	//codigo para dibujar el nivel 1
 	private void dibujaNivel01(){
 		for (int j=0; j<10; j++){
 			for(int i=j; i<10; i++){
@@ -126,24 +141,37 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 			}
 		}
 	}
-
+	//codigo para dibujar el nivel 2
 	private void dibujaNivel02(){
-		for (int j=0; j<9; j++){
-			for(int i=j; i<9; i++){
+		for (int j=0; j<10; j++){
+			for(int i=j; i<10; i++){
 				Ladrillo miLadrillo = new Ladrillo(anchoLadrillo*i - anchoLadrillo*j, altoLadrillo*j , anchoLadrillo, altoLadrillo, Color.GRAY);
 				add(miLadrillo);
 				pause(7);
 			}
 		}
 	}
+	//codigo para dibujar el nivel 3
+	private void dibujaNivel03(){
+		for(int k=0; k<10; k++){
+			for(int l=k;l<10; l++){
+				Ladrillo miLadrillo = new Ladrillo(anchoLadrillo*l - anchoLadrillo*k/2 , altoLadrillo* k + altoLadrillo  , anchoLadrillo, altoLadrillo, Color.GRAY);
+				add(miLadrillo);
+				pause(0);
+			}
+		}
+		//otra piramide para duplicar los ladrillos y tener ladrillos lvl 2
+		for (int j=0; j<7; j++){
+			for(int i=j; i<7; i++){
 
-	private GLabel  gameOver(){
+				Ladrillo miLadrillo = new Ladrillo(anchoLadrillo*i - anchoLadrillo*j/2 , altoLadrillo* j + altoLadrillo  , anchoLadrillo, altoLadrillo, Color.BLACK);
+				add(miLadrillo);
+				pause(7);
 
 
-		GLabel _gameOver = new GLabel ("HAS PERDIDO");
-		_gameOver.setColor(Color.BLACK);
-		_gameOver.setFont(new Font("verdana",Font.BOLD,50));
-		return _gameOver;
+			}
+		}
+
 	}
 
 

@@ -11,7 +11,7 @@ import acm.graphics.GRect;
  *la clase Barra es la que dibuja el cursor del juego
  */
 public class Barra extends GRect{
-	
+
 	/**
 	 * crea el cursor del juego
 	 * 
@@ -23,10 +23,10 @@ public class Barra extends GRect{
 
 	public Barra(double width, double height, Color _color) {
 		super(width, height);
-		
+
 		setFilled(true);
 		setFillColor(_color);
-		
+
 	}
 	/**
 	 * mueveBarra reposiciona la barra en la cordenada en la q esta el raton
