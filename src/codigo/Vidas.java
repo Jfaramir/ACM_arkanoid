@@ -37,10 +37,12 @@ public class Vidas extends GRect{
 	public void actualizaVidas(int vida){
 		puntosVida -= vida;
 		texto.setLabel("" + puntosVida);
-
-
 	}
-
+	//para los bonus
+	public void bonusVida (int vidas){
+		puntosVida +=1;
+		texto.setLabel("" + puntosVida);
+	}
 
 
 }

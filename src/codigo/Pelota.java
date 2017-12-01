@@ -17,12 +17,10 @@ public class Pelota extends GOval{
 
 
 
-	/**
+	/*
 	 * Este es el constructor dabuti que permite
 	 * pasar el color como parámetro 
 	 * 
-	 * @param _ancho indica el ancho y el alto de la bola
-	 * @param _color
 	 */
 	public Pelota(double _ancho, Color _color){
 		super(_ancho, _ancho);
@@ -32,7 +30,7 @@ public class Pelota extends GOval{
 		setFillColor(_color);
 		setFilled(true);
 	}
-	/**
+	/*
 	 * se encarga de mover a la pelota y chequear si ha habido colisiones
 	 * 
 	 */

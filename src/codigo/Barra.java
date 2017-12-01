@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import acm.graphics.GRect;
 
-/**
+/*
  * 
  * @author Juan Pablo Carpio
  *
@@ -12,7 +12,7 @@ import acm.graphics.GRect;
  */
 public class Barra extends GRect{
 
-	/**
+	/*
 	 * crea el cursor del juego
 	 * 
 	 * @param width --> el ancho del cursor
@@ -28,7 +28,7 @@ public class Barra extends GRect{
 		setFillColor(_color);
 
 	}
-	/**
+	/*
 	 * mueveBarra reposiciona la barra en la cordenada en la q esta el raton
 	 * @param posX La posicion x en la q esta el raton
 	 * @param anchoPantalla pq asi no tengo q pasar nada mas. 

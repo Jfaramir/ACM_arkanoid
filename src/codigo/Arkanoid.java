@@ -15,9 +15,8 @@ import acm.graphics.*;
 public class Arkanoid extends acm.program.GraphicsProgram{
 	//declaramos la pelota 
 	Pelota pelota1 = new Pelota(7, Color.BLUE);
-
 	// declaramos la barra
-	Barra barra1 = new Barra(70, 15, Color.RED);
+	Barra barra1 = new Barra(700, 15, Color.RED);
 	//un espacio del ancho del ladrillo para dejaar bonito el nivel 3
 	int espacio = 40;
 	//estas son las medidas del ladrillo
@@ -33,7 +32,12 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	GLabel gameOver = new GLabel ("HAS PERDIDO");
 	// declaramos el texto de intentar otra vez
 	GLabel intenta = new GLabel ("INTENTALO DE NUEVO");
+	// declaramos el texto de nivel 1 conseguido
+	GLabel lvl1 = new GLabel ("nivel 1 completado");
+	// declaramos el texto de nivel 2 conseguido
+	GLabel lvl2 = new GLabel ("nivel 2 completado");
 	//esto es el marcador
+	GLabel lvl3 = new GLabel ("nivel 3 completado");
 	Marcador marcador = new Marcador(60, 40);
 	//Esto hace que salga el numero de vidas
 	Vidas vidas = new Vidas (60,40);
@@ -65,17 +69,24 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		vidas.dibuja(this);
 		//con esto dibujamos el nivel 2
 
-
-
 		while (true){
-			//pa que se mueva
+			//para que se mueva
 			pelota1.muevete(this);
-			pause(2);
+			pause(0);
+			// con esto te añade una vida al eliminar el ladrillo numero 50 si vas con 1 vida
+			if (marcador.puntuacion == 50 && vidas.puntosVida <= 1){
+				vidas.bonusVida(1);
 
+			}
 			//con esto pasamos al segundo nivel
 			if (marcador.puntuacion == ladrillosNivel1){
+				add(lvl1,410 , 300 );
+				lvl1.setColor(Color.GREEN);
+				lvl1.setFont(new Font ("verdana", Font.BOLD, 15));
+
 				//dibujamos el nivel 2
 				dibujaNivel02();
+
 				//colocamos la pelota y hacemos q se mueva
 				pelota1.setLocation(0, getHeight()* 0.60 - pelota1.getHeight());
 
@@ -83,28 +94,49 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 					//asi hacemos que se mueva la pelota en el nivel 2
 					pelota1.muevete(this);
-					pause(2);
+					pause(0);
+					//bonus por si llegas con 3 vidas
+					if (marcador.puntuacion == 100 && vidas.puntosVida <= 2){
+						vidas.bonusVida(1);
+
+					}
 					//si llegas con menos de 2 vidas saldra este mensaje para que intentes conseguir el bonus
 					if (vidas.puntosVida < 2 && marcador.puntuacion == 110){
+						//añadimos un lvl 2 completado
+						add(lvl2,410 , 330 );
+						lvl2.setColor(Color.GREEN);
+						lvl2.setFont(new Font ("verdana", Font.BOLD, 15));
+						//añadimos el cartelito de intentalo de nuevo para que intente llegar al bonus
 						add(intenta,getWidth()/2 - 250,getHeight()/2);
 						intenta.setColor(Color.BLACK);
 						intenta.setFont(new Font ("verdana",Font.BOLD, 40));
 						pelota1.setLocation(0, getHeight()*0.60 - pelota1.getHeight());
 					}
-					
+
 					//añadimos un bonus de un nivel mas si llegas con mas de 2 vidas
 					if (vidas.puntosVida >= 2 && marcador.puntuacion == 110){
+
+						//añadimos un lvl 2 completado
+						add(lvl2,410 , 330 );
+						lvl2.setColor(Color.GREEN);
+						lvl2.setFont(new Font ("verdana", Font.BOLD, 15));
 						//dibujo el nivel 3
 						dibujaNivel03();
 						//coloco la pelota y hago q se mueva
 						pelota1.setLocation(0, getHeight()* 0.60 - pelota1.getHeight());
 						pelota1.muevete(this);
 						pelota1.yVelocidad =-1; 
+						//esto es para que se mueva la pelota
 						while (true){
 							pelota1.muevete(this);
 							pause(2);
 							//añadimos victoria
 							if ( marcador.puntuacion == 201){
+								//añadimos un lvl 2 completado
+								add(lvl3,410 , 330 );
+								lvl3.setColor(Color.GREEN);
+								lvl3.setFont(new Font ("verdana", Font.BOLD, 15));
+								//añadimos el cartelito de victoria
 								add (_gg,getWidth()/2 -200,getHeight()/2);
 								_gg.setColor(Color.BLACK);
 								_gg.setFont(new Font ("verdana",Font.BOLD, 50));
@@ -123,10 +155,10 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 				pelota1.setLocation(0, getHeight()* 0.60 - pelota1.getHeight());
 				pelota1.muevete(this);
-				pause(0);
+				pause(2);
 
 			}
-			//añadimos gameover
+			//añadimos el cartelito de gameover
 			if(vidas.puntosVida == 0){
 				add(gameOver,getWidth()/2 - 200,getHeight()/2);
 				gameOver.setColor(Color.BLACK);
