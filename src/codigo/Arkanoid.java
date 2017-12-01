@@ -17,9 +17,10 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	Pelota pelota1 = new Pelota(7, Color.BLUE);
 
 	// declaramos la barra
-	Barra barra1 = new Barra(700, 15, Color.RED);
-	//estas son las medidas del ladrillo
+	Barra barra1 = new Barra(70, 15, Color.RED);
+	//un espacio del ancho del ladrillo para dejaar bonito el nivel 3
 	int espacio = 40;
+	//estas son las medidas del ladrillo
 	int anchoLadrillo = 40;
 	int altoLadrillo = 20;
 	// el espacio para el menu
@@ -69,7 +70,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		while (true){
 			//pa que se mueva
 			pelota1.muevete(this);
-			pause(0);
+			pause(2);
 
 			//con esto pasamos al segundo nivel
 			if (marcador.puntuacion == ladrillosNivel1){
@@ -82,7 +83,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 					//asi hacemos que se mueva la pelota en el nivel 2
 					pelota1.muevete(this);
-					pause(0);
+					pause(2);
 					//si llegas con menos de 2 vidas saldra este mensaje para que intentes conseguir el bonus
 					if (vidas.puntosVida < 2 && marcador.puntuacion == 110){
 						add(intenta,getWidth()/2 - 250,getHeight()/2);
@@ -101,7 +102,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 						pelota1.yVelocidad =-1; 
 						while (true){
 							pelota1.muevete(this);
-							pause(0);
+							pause(2);
 							//añadimos victoria
 							if ( marcador.puntuacion == 201){
 								add (_gg,getWidth()/2 -200,getHeight()/2);
@@ -122,7 +123,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 				pelota1.setLocation(0, getHeight()* 0.60 - pelota1.getHeight());
 				pelota1.muevete(this);
-				pause(2);
+				pause(0);
 
 			}
 			//añadimos gameover
