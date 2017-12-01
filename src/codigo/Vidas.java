@@ -21,7 +21,7 @@ public class Vidas extends GRect{
 		super(width, height);
 		setFilled(true);
 		setFillColor(Color.WHITE);
-		texto.setLabel("3");
+		texto.setLabel("" + puntosVida);
 		texto.setFont(new Font("Verdana",Font.BOLD, 18));
 
 
@@ -44,5 +44,4 @@ public class Vidas extends GRect{
 
 
 }
-
 

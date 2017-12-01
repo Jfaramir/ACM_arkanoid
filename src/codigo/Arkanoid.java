@@ -17,18 +17,21 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	Pelota pelota1 = new Pelota(7, Color.BLUE);
 
 	// declaramos la barra
-	Barra barra1 = new Barra(70, 15, Color.RED);
+	Barra barra1 = new Barra(700, 15, Color.RED);
 	//estas son las medidas del ladrillo
+	int espacio = 40;
 	int anchoLadrillo = 40;
 	int altoLadrillo = 20;
 	// el espacio para el menu
 	static int espacioMenu = 190;
 	// numero de ladrillos en el nivel 1
 	int ladrillosNivel1 = 55;
-	//marcamos el texto de victoria
+	//declaramos el texto de victoria
 	GLabel _gg = new GLabel ("HAS GANADO");
-	//marcamos el texto de derrota
+	//declaramos el texto de derrota
 	GLabel gameOver = new GLabel ("HAS PERDIDO");
+	// declaramos el texto de intentar otra vez
+	GLabel intenta = new GLabel ("INTENTALO DE NUEVO");
 	//esto es el marcador
 	Marcador marcador = new Marcador(60, 40);
 	//Esto hace que salga el numero de vidas
@@ -66,7 +69,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		while (true){
 			//pa que se mueva
 			pelota1.muevete(this);
-			pause(2);
+			pause(0);
 
 			//con esto pasamos al segundo nivel
 			if (marcador.puntuacion == ladrillosNivel1){
@@ -79,7 +82,15 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 					//asi hacemos que se mueva la pelota en el nivel 2
 					pelota1.muevete(this);
-					pause(2);
+					pause(0);
+					//si llegas con menos de 2 vidas saldra este mensaje para que intentes conseguir el bonus
+					if (vidas.puntosVida < 2 && marcador.puntuacion == 110){
+						add(intenta,getWidth()/2 - 250,getHeight()/2);
+						intenta.setColor(Color.BLACK);
+						intenta.setFont(new Font ("verdana",Font.BOLD, 40));
+						pelota1.setLocation(0, getHeight()*0.60 - pelota1.getHeight());
+					}
+					
 					//añadimos un bonus de un nivel mas si llegas con mas de 2 vidas
 					if (vidas.puntosVida >= 2 && marcador.puntuacion == 110){
 						//dibujo el nivel 3
@@ -90,9 +101,9 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 						pelota1.yVelocidad =-1; 
 						while (true){
 							pelota1.muevete(this);
-							pause(2);
+							pause(0);
 							//añadimos victoria
-							if ( marcador.puntuacion == 220){
+							if ( marcador.puntuacion == 201){
 								add (_gg,getWidth()/2 -200,getHeight()/2);
 								_gg.setColor(Color.BLACK);
 								_gg.setFont(new Font ("verdana",Font.BOLD, 50));
@@ -161,10 +172,10 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 			}
 		}
 		//otra piramide para duplicar los ladrillos y tener ladrillos lvl 2
-		for (int j=0; j<7; j++){
-			for(int i=j; i<7; i++){
+		for (int j=0; j<8; j++){
+			for(int i=j; i<8; i++){
 
-				Ladrillo miLadrillo = new Ladrillo(anchoLadrillo*i - anchoLadrillo*j/2 , altoLadrillo* j + altoLadrillo  , anchoLadrillo, altoLadrillo, Color.BLACK);
+				Ladrillo miLadrillo = new Ladrillo(espacio+ anchoLadrillo*i - anchoLadrillo*j/2 , altoLadrillo* j + altoLadrillo  , anchoLadrillo, altoLadrillo, Color.BLACK);
 				add(miLadrillo);
 				pause(7);
 
